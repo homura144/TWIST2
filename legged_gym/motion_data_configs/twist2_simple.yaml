@@ -1,0 +1,51 @@
+# Simplified TWIST2 dataset configuration using available motion files
+root_path: /cephfs/hesixiao/TWIST2/datasets/v1_v2_v3_g1
+motions:
+# Walk motions
+- file: 0807_yanjie_walk_001.pkl
+  weight: 1.0
+  description: walk motion
+- file: 0807_yanjie_walk_002.pkl
+  weight: 1.0
+  description: walk motion
+- file: 0807_yanjie_walk_003.pkl
+  weight: 1.0
+  description: walk motion
+- file: 0807_yanjie_walk_004.pkl
+  weight: 1.0
+  description: walk motion
+- file: 0807_yanjie_walk_005.pkl
+  weight: 1.0
+  description: walk motion
+- file: 0807_yanjie_walk_006.pkl
+  weight: 1.0
+  description: walk motion
+- file: 0807_yanjie_walk_007.pkl
+  weight: 1.0
+  description: walk motion
+- file: 0807_yanjie_walk_008.pkl
+  weight: 1.0
+  description: walk motion
+- file: 0807_yanjie_walk_009.pkl
+  weight: 1.0
+  description: walk motion
+- file: 0807_yanjie_walk_010.pkl
+  weight: 1.0
+  description: walk motion
+
+# Static motions
+- file: 0811_static_001.pkl
+  weight: 1.0
+  description: static motion
+- file: 0811_static_002.pkl
+  weight: 1.0
+  description: static motion
+- file: 0811_static_003.pkl
+  weight: 1.0
+  description: static motion
+- file: 0811_static_004.pkl
+  weight: 1.0
+  description: static motion
+- file: 0811_static_005.pkl
+  weight: 1.0
+  description: static motion
