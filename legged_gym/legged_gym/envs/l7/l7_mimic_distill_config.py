@@ -7,6 +7,7 @@ class L7MimicPrivCfg(G1MimicPrivCfg):
         num_envs = 4096
         num_actions = 29
         obs_type = 'priv'
+        pose_termination = False
         dof_err_w = [0.6, 0.8, 1.0, 1.0, 2.0, 0.6,
                      0.6, 0.8, 1.0, 1.0, 2.0, 0.6,
                      1.0, 2.0, 3.0,
