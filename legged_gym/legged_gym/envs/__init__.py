@@ -45,6 +45,11 @@ from .g1.g1_mimic_distill_config import G1MimicStuRLCfg, G1MimicStuRLCfgDAgger
 from .g1.g1_mimic_future import G1MimicFuture
 from .g1.g1_mimic_future_config import G1MimicStuFutureCfg, G1MimicStuFutureCfgDAgger
 
+from .l7.l7_mimic_distill import L7MimicDistill
+from .l7.l7_mimic_distill_config import L7MimicPrivCfg, L7MimicPrivCfgPPO
+from .l7.l7_mimic_future import L7MimicFuture
+from .l7.l7_mimic_future_config import L7MimicStuFutureCfg, L7MimicStuFutureCfgDAgger
+
 from legged_gym.gym_utils.task_registry import task_registry
 
 
@@ -55,4 +60,6 @@ task_registry.register("g1_priv_mimic", G1MimicDistill, G1MimicPrivCfg(), G1Mimi
 task_registry.register("g1_stu_rl", G1MimicDistill, G1MimicStuRLCfg(), G1MimicStuRLCfgDAgger())
 task_registry.register("g1_stu_future", G1MimicFuture, G1MimicStuFutureCfg(), G1MimicStuFutureCfgDAgger())
 
+task_registry.register("l7_priv_mimic", L7MimicDistill, L7MimicPrivCfg(), L7MimicPrivCfgPPO())
+task_registry.register("l7_stu_future", L7MimicFuture, L7MimicStuFutureCfg(), L7MimicStuFutureCfgDAgger())
 

@@ -1,0 +1,200 @@
+root_path: /cephfs/hesixiao/TWIST2/datasets/AMSS_robotera_l7_pkl
+motions:
+- description: general movement
+  file: ACCAD/Male2MartialArtsPunches_c3d/E1_-__Jab_left_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2MartialArtsPunches_c3d/E3_-__cross_left_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2MartialArtsPunches_c3d/E14_-_body_cross_right_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2MartialArtsPunches_c3d/E16_-_body_jab_left_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2MartialArtsKicks_c3d/male2_Subject_Cal_2_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male1General_c3d/General_A1_-_Stand_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male1General_c3d/General_A2_-_Sway_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male1General_c3d/General_A2_-_Sway_t2_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male1General_c3d/General_A2_-_Sway_t3_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male1General_c3d/General_A3_-_Swing_Arms_While_Stand_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male1General_c3d/General_A4_-_Look_Around_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male1General_c3d/General_A5_-_Pick_Up_Box_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male1General_c3d/General_A6_-_Lift_Box_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male1General_c3d/General_A7_-_Crouch_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2MartialArtsStances_c3d/D1_-_stand_to_ready_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2MartialArtsStances_c3d/D8_-_bow_to_ready_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2MartialArtsStances_c3d/D10_-_victory_2_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2MartialArtsStances_c3d/D11_-_ready_to_taunt_one_to_ready_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2MartialArtsStances_c3d/D12_-_ready_to_taunt_two_to_ready_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2MartialArtsStances_c3d/D14_-ready_to_crouch_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2MartialArtsStances_c3d/D15_-_switch_stance_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2MartialArtsStances_c3d/D16_-_switch_stance_and_bounce_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1General_c3d/A1_-_Stand_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1General_c3d/A2_-_Sway_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1General_c3d/A2_-_Sway_t2_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1General_c3d/A3_-_Swing_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1General_c3d/A4_-_look_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1General_c3d/A5_-_pick_up_box_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1General_c3d/A6_-_lift_box_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1General_c3d/A7_-_crouch_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/s001/EricCamper04_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1Gestures_c3d/D1_-_Urban_1_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1Gestures_c3d/D3_-_Conversation_Gestures_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1Gestures_c3d/Female1_Subj_Calibration_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2Walking_c3d/B4_-_Stand_to_Walk_backwards_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2Walking_c3d/B14_-__Walk_turn_right_45_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2Walking_c3d/B22_-__side_step_left_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2Walking_c3d/B23_-__side_step_right_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2General_c3d/A1-_Stand_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2General_c3d/A2-_Sway_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2General_c3d/A3-_Swing_arms_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2General_c3d/A4-_Look_Around_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2General_c3d/A5-_Pick_up_box_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2General_c3d/A6-_Box_lift_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2General_c3d/A7-_Crouch_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male2General_c3d/male2_Calibration_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male1Running_c3d/Run_C24_-_quick_side_step_left_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Male1Running_c3d/Run_C25_-_quick_side_step_right_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/MartialArtsWalksTurns_c3d/E2_-_Turn_around_left_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/MartialArtsWalksTurns_c3d/E5_-_retreat_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/MartialArtsWalksTurns_c3d/E10_-_side_step_right_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/MartialArtsWalksTurns_c3d/E13_-_block_right_high_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/MartialArtsWalksTurns_c3d/E15_-_block_left_middle_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/MartialArtsWalksTurns_c3d/E17_-_block_middle_high_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/MartialArtsWalksTurns_c3d/E18_-_block_middle_low_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/MartialArtsWalksTurns_c3d/E19_-_dodge_left_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/MartialArtsWalksTurns_c3d/E19_-_dodge_left_t2_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/MartialArtsWalksTurns_c3d/E20_-_dodge_right_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/MartialArtsWalksTurns_c3d/E21_-_duck_left_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/MartialArtsWalksTurns_c3d/E22_-_duck_right_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1Walking_c3d/B1_-_stand_to_walk_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1Walking_c3d/B2_-_walk_to_stand_t2_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1Walking_c3d/B4_-_stand_to_walk_back_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1Walking_c3d/B9_-_walk_turn_left_(90)_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1Walking_c3d/B10_-_walk_turn_left_(45)_stageii_normal.pkl
+  weight: 1.0
+- description: general movement
+  file: ACCAD/Female1Walking_c3d/B11_-_walk_turn_left_(135)_stageii_normal.pkl
+  weight: 1.0

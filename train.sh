@@ -7,9 +7,10 @@
 
 cd legged_gym/legged_gym/scripts
 
-robot_name="g1"
+robot_name="l7"
 exptid=$1
 device=$2
+shift 2
 
 task_name="${robot_name}_stu_future"
 proj_name="${robot_name}_stu_future"
@@ -21,5 +22,5 @@ python train.py --task "${task_name}" \
                 --exptid "${exptid}" \
                 --device "${device}" \
                 --teacher_exptid "None" \
-                # --resume \
-                # --debug \
+                --no_wandb \
+                "$@"
