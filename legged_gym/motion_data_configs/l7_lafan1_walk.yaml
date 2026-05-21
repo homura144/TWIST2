@@ -1,0 +1,32 @@
+root_path: /cephfs/hesixiao/TWIST2/datasets
+motions:
+- description: lafan walk1
+  file: lafan1_l7_filtered_pkl/robotera_l7_walk1_subject1_normal.pkl
+  weight: 1.0
+- description: lafan walk1
+  file: lafan1_l7_filtered_pkl/robotera_l7_walk1_subject2_normal.pkl
+  weight: 1.0
+- description: lafan walk1
+  file: lafan1_l7_filtered_pkl/robotera_l7_walk1_subject5_normal.pkl
+  weight: 1.0
+- description: lafan walk2
+  file: lafan1_l7_filtered_pkl/robotera_l7_walk2_subject1_normal.pkl
+  weight: 1.0
+- description: lafan walk2
+  file: lafan1_l7_filtered_pkl/robotera_l7_walk2_subject3_normal.pkl
+  weight: 1.0
+- description: lafan walk2
+  file: lafan1_l7_filtered_pkl/robotera_l7_walk2_subject4_normal.pkl
+  weight: 1.0
+- description: lafan walk3
+  file: lafan1_l7_filtered_pkl/robotera_l7_walk3_subject2_normal.pkl
+  weight: 1.0
+- description: lafan walk3
+  file: lafan1_l7_filtered_pkl/robotera_l7_walk3_subject3_normal.pkl
+  weight: 1.0
+- description: lafan walk3
+  file: lafan1_l7_filtered_pkl/robotera_l7_walk3_subject5_normal.pkl
+  weight: 1.0
+- description: lafan walk4
+  file: lafan1_l7_filtered_pkl/robotera_l7_walk4_subject1_normal.pkl
+  weight: 1.0

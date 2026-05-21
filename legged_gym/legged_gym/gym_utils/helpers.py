@@ -187,6 +187,8 @@ def update_cfg_from_args(env_cfg, cfg_train, args):
             env_cfg.env.record_video = args.record_video
         if args.no_rand:
             env_cfg.domain_rand.domain_rand_general = False
+        if args.motion_file is not None:
+            env_cfg.motion.motion_file = args.motion_file
     if cfg_train is not None:
         if args.seed is not None:
             cfg_train.seed = args.seed
@@ -308,6 +310,7 @@ def get_args():
         {"name": "--teacher_exptid", "type": str, "help": "teacher exptid", "default": "mimic"},
         {"name": "--teacher_checkpoint", "type": int, "help": "teacher checkpoint", "default": -1},
         {"name": "--eval_student", "action": "store_true", "default": False, "help": "eval student"},
+        {"name": "--motion_file", "type": str, "help": "motion file"},
         {"name": "--jit_path", "type": str, "help": "jit path", "default": None},
     ]
     # parse arguments
