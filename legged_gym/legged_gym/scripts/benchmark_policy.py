@@ -122,7 +122,7 @@ def play(args):
         for i in range(env.num_envs):
             video_name = args.proj_name + "-" + args.exptid +".mp4"
             run_name = log_pth.split("/")[-1]
-            path = f"../../logs/videos_retarget/{run_name}"
+            path = f"../../../logs/videos/motion_tracking/{run_name}"
             if not os.path.exists(path):
                 os.makedirs(path)
             video_name = os.path.join(path, video_name)

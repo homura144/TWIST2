@@ -150,6 +150,8 @@ def parse_sim_params(args, cfg):
     return sim_params
 
 def get_load_path(root, load_run=-1, checkpoint=-1, model_name_include="model"):
+    if isinstance(checkpoint, str) and checkpoint not in ("", "-1") and os.path.isfile(checkpoint):
+        return checkpoint
     if not os.path.isdir(root):  # use first 4 chars to mactch the run name
         model_name_cand = os.path.basename(root)
         model_parent = os.path.dirname(root)
@@ -159,7 +161,7 @@ def get_load_path(root, load_run=-1, checkpoint=-1, model_name_include="model"):
             if len(name) >= 6:
                 if name[:6] == model_name_cand:
                     root = os.path.join(model_parent, name)
-    if checkpoint==-1:
+    if str(checkpoint) == "-1":
         models = [file for file in os.listdir(root) if model_name_include in file]
         models.sort(key=lambda m: '{0:0>15}'.format(m))
         model = models[-1]
@@ -269,7 +271,7 @@ def get_args():
         {"name": "--experiment_name", "type": str,  "help": "Name of the experiment to run or load. Overrides config file if provided."},
         {"name": "--run_name", "type": str,  "help": "Name of the run. Overrides config file if provided."},
         {"name": "--load_run", "type": str,  "help": "Name of the run to load when resume=True. If -1: will load the last run. Overrides config file if provided."},
-        {"name": "--checkpoint", "type": int, "default": -1, "help": "Saved model checkpoint number. If -1: will load the last checkpoint. Overrides config file if provided."},
+        {"name": "--checkpoint", "type": str, "default": "-1", "help": "Saved model checkpoint number, checkpoint file path, or -1 for latest."},
         
         {"name": "--headless", "action": "store_true", "default": False, "help": "Force display off at all times"},
         {"name": "--horovod", "action": "store_true", "default": False, "help": "Use horovod for multi-gpu training"},
@@ -298,6 +300,8 @@ def get_args():
         {"name": "--no_wandb", "action": "store_true", "default": False, "help": "no wandb"},
 
         {"name": "--record_video", "action": "store_true", "default": False, "help": "record video"},
+        {"name": "--eval_steps", "type": int, "help": "Number of environment steps to run in play/eval. If omitted, play.py uses its default trajectory length."},
+        {"name": "--eval_start", "type": str, "default": "zero", "choices": ["random", "zero"], "help": "Reference motion start mode for play/eval."},
         
         {"name": "--fix_action_std", "action": "store_true", "default": False, "help": "fix std"},
         {"name": "--no_rand", "action": "store_true", "default": False, "help": "no domain randomization"},
