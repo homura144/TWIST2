@@ -62,10 +62,10 @@ bash train.sh l7_lafan_all cuda:0 \
   --motion_file /cephfs/hesixiao/TWIST2/legged_gym/motion_data_configs/l7_lafan1_all.yaml
 ```
 
-The WBC subtree has a matching all-motion YAML:
+The TWIST1 subtree has a matching all-motion YAML:
 
 ```bash
-/cephfs/hesixiao/TWIST2/wbc_control_basedTWIST/legged_gym/motion_data_configs/lafan1_l7_filtered.yaml
+/cephfs/hesixiao/TWIST2/TWIST1/legged_gym/motion_data_configs/lafan1_l7_filtered.yaml
 ```
 
 Its `train_teacher.sh` and `train_student.sh` now activate the `twist2` env when
@@ -122,19 +122,18 @@ a teacher and disables the KL loss. That is still a valid future-policy RL run.
 For distillation, pass a real teacher experiment name through the appropriate
 script argument so the runner can load the teacher checkpoint.
 
-## WBC Teacher And Student I/O
+## TWIST1 Teacher And Student I/O
 
-The WBC subtree keeps the historical `l3_*` task names. L3 and L7 are the same
-robot in this repo context, so the controlled action width is also 29.
+The TWIST1 subtree uses `l7_*` task names, and the controlled action width is 29.
 
 Teacher task:
 
 ```bash
 bash train_teacher.sh wbc_lafan_teacher cuda:0 \
-  --motion_file /cephfs/hesixiao/TWIST2/wbc_control_basedTWIST/legged_gym/motion_data_configs/lafan1_l7_filtered.yaml
+  --motion_file /cephfs/hesixiao/TWIST2/TWIST1/legged_gym/motion_data_configs/lafan1_l7_filtered.yaml
 ```
 
-The teacher uses `l3_priv_mimic` with `obs_type = "priv"`:
+The teacher uses `l7_priv_mimic` with `obs_type = "priv"`:
 
 ```text
 n_priv_mimic_obs = 20 * (8 + 29 + 3 * 9) = 1280
@@ -149,10 +148,10 @@ Student task:
 
 ```bash
 bash train_student.sh wbc_lafan_student <teacher_run_name> cuda:0 \
-  --motion_file /cephfs/hesixiao/TWIST2/wbc_control_basedTWIST/legged_gym/motion_data_configs/lafan1_l7_filtered.yaml
+  --motion_file /cephfs/hesixiao/TWIST2/TWIST1/legged_gym/motion_data_configs/lafan1_l7_filtered.yaml
 ```
 
-The student uses `l3_stu_rl` with `obs_type = "student"`:
+The student uses `l7_stu_rl` with `obs_type = "student"`:
 
 ```text
 n_mimic_obs = 8 + 29 = 37
@@ -194,17 +193,17 @@ nohup bash train.sh l7_lafan_dance_<timestamp> cuda:0 --num_envs 1024 \
 WBC teacher:
 
 ```bash
-cd /cephfs/hesixiao/TWIST2/wbc_control_basedTWIST
+cd /cephfs/hesixiao/TWIST2/TWIST1
 nohup bash train_teacher.sh wbc_lafan_teacher_<timestamp> cuda:0 \
-  --motion_file /cephfs/hesixiao/TWIST2/wbc_control_basedTWIST/legged_gym/motion_data_configs/lafan1_l7_filtered.yaml \
+  --motion_file /cephfs/hesixiao/TWIST2/TWIST1/legged_gym/motion_data_configs/lafan1_l7_filtered.yaml \
   > logs/wbc_lafan_teacher_<timestamp>.out 2>&1 &
 ```
 
 WBC student after a teacher checkpoint exists:
 
 ```bash
-cd /cephfs/hesixiao/TWIST2/wbc_control_basedTWIST
+cd /cephfs/hesixiao/TWIST2/TWIST1
 nohup bash train_student.sh wbc_lafan_student_<timestamp> wbc_lafan_teacher_<timestamp> cuda:0 \
-  --motion_file /cephfs/hesixiao/TWIST2/wbc_control_basedTWIST/legged_gym/motion_data_configs/lafan1_l7_filtered.yaml \
+  --motion_file /cephfs/hesixiao/TWIST2/TWIST1/legged_gym/motion_data_configs/lafan1_l7_filtered.yaml \
   > logs/wbc_lafan_student_<timestamp>.out 2>&1 &
 ```
