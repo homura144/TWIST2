@@ -159,32 +159,3 @@ root_rot_format: wxyz
 `pose.utils.motion_lib_pkl.MotionLib` converts those root quaternions to
 `xyzw` on load. Without this conversion, the first component is interpreted as
 the x component instead of w, which makes the robot appear sideways or flipped.
-
-## Why Single-Category Curves Can Look Worse
-
-The current logs show single-category runs have much lower `mean_reward` and
-`mean_episode_length` than the all-motion run, but the comparison is not
-one-to-one:
-
-| Run | Recent iteration | Total timesteps | Recent mean reward | Recent mean episode length |
-| --- | ---: | ---: | ---: | ---: |
-| `l7_lafan_all` | 576 | 56.72M | 17.49 | 356.62 |
-| `l7_lafan_dance` | 553 | 13.62M | 0.99 | 18.45 |
-| `l7_lafan_walk` | 556 | 13.69M | 0.85 | 17.06 |
-| `l7_lafan_run` | 557 | 13.71M | 1.19 | 22.95 |
-
-The single-category runs were launched with `--num_envs 1024`, while the
-all-motion run used the default L7 value of 4096. At a similar iteration count,
-the all-motion run has collected about 4x more samples. It is therefore expected
-to be much further along.
-
-Another important detail is that `Mean reward (total)` is accumulated per
-episode. When early termination produces short episodes, the total episode
-reward is also small. In the current logs, the single-category policies are
-still terminating after roughly 15-25 steps, while the all-motion policy often
-survives hundreds of steps. The reward gap mostly reflects the episode-length
-gap.
-
-For a fair comparison, compare runs at similar total timesteps, or launch the
-single-category runs with the same `--num_envs 4096`. Also compare normalized
-tracking errors and reward components, not only total episode reward.
