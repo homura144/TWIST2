@@ -1,4 +1,5 @@
 root_path: /cephfs/hesixiao/TWIST2/datasets/AMSS_robotera_l7_pkl
+root_rot_format: wxyz
 motions:
 - description: general movement
   file: ACCAD/Male2MartialArtsPunches_c3d/E1_-__Jab_left_stageii_normal.pkl

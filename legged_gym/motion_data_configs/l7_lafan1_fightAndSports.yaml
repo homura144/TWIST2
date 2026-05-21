@@ -1,4 +1,5 @@
 root_path: /cephfs/hesixiao/TWIST2/datasets
+root_rot_format: wxyz
 motions:
 - description: lafan fightAndSports1
   file: lafan1_l7_filtered_pkl/robotera_l7_fightAndSports1_subject1_normal.pkl
