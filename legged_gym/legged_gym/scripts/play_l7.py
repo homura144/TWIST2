@@ -83,6 +83,60 @@ def _sync_reference_env_to_policy_motion(env, reference_env_id=0, policy_env_id=
     env.gym.refresh_dof_state_tensor(env.sim)
     env.gym.refresh_rigid_body_state_tensor(env.sim)
 
+
+def _make_reference_motion_clock(env, policy_env_id=1):
+    policy_ids = torch.tensor([policy_env_id], device=env.device, dtype=torch.long)
+    return {
+        "motion_id": env._motion_ids[policy_ids].clone(),
+        "start_time": env._motion_time_offsets[policy_ids].clone(),
+        "origin_xy": env.episode_init_origin[policy_ids, :2].clone(),
+    }
+
+
+def _reference_motion_time(clock, step_idx, dt):
+    return clock["start_time"] + step_idx * dt
+
+
+def _set_reference_env_to_motion_clock(env, clock, step_idx, reference_env_id=0):
+    env_ids = torch.tensor([reference_env_id], device=env.device, dtype=torch.long)
+    motion_ids = clock["motion_id"]
+    motion_times = _reference_motion_time(clock, step_idx, env.dt)
+
+    root_pos, root_rot, root_vel, root_ang_vel, dof_pos, dof_vel, *_ = env._motion_lib.calc_motion_frame(motion_ids, motion_times)
+    root_pos[:, 2] += env.cfg.motion.height_offset
+    root_pos[:, :2] += clock["origin_xy"]
+
+    env._motion_ids[env_ids] = motion_ids
+    env._motion_time_offsets[env_ids] = motion_times - env.episode_length_buf[env_ids] * env.dt
+    env.episode_init_origin[env_ids, :2] = clock["origin_xy"]
+    env.root_states[env_ids, 0:3] = root_pos
+    env.root_states[env_ids, 3:7] = root_rot
+    env.root_states[env_ids, 7:10] = root_vel
+    env.root_states[env_ids, 10:13] = root_ang_vel
+    env.dof_pos[env_ids] = dof_pos
+    env.dof_vel[env_ids] = dof_vel
+    env.last_actions[env_ids] = 0.
+    env.actions[env_ids] = 0.
+    env.torques[env_ids] = 0.
+
+    env_ids_int32 = env_ids.to(dtype=torch.int32)
+    env.gym.set_actor_root_state_tensor_indexed(
+        env.sim,
+        gymtorch.unwrap_tensor(env.root_states),
+        gymtorch.unwrap_tensor(env_ids_int32),
+        len(env_ids_int32),
+    )
+    env.gym.set_dof_state_tensor_indexed(
+        env.sim,
+        gymtorch.unwrap_tensor(env.dof_state),
+        gymtorch.unwrap_tensor(env_ids_int32),
+        len(env_ids_int32),
+    )
+    env.gym.refresh_actor_root_state_tensor(env.sim)
+    env.gym.refresh_dof_state_tensor(env.sim)
+    env.gym.refresh_rigid_body_state_tensor(env.sim)
+
+
 def get_load_path(root, load_run=-1, checkpoint=-1, model_name_include="jit"):
     if checkpoint==-1:
         models = [file for file in os.listdir(root) if model_name_include in file]
@@ -209,7 +263,8 @@ def play(args):
     completed_episode_lengths = []
     policy_env_id = 1 if args.record_video else 0
     if args.record_video:
-        _sync_reference_env_to_policy_motion(env, reference_env_id=0, policy_env_id=policy_env_id)
+        reference_clock = _make_reference_motion_clock(env, policy_env_id=policy_env_id)
+        _set_reference_env_to_motion_clock(env, reference_clock, step_idx=0, reference_env_id=0)
     current_episode_lengths = torch.zeros(1, device=env.device, dtype=torch.float)
     for i in tqdm(range(traj_length)):
         if args.use_jit:
@@ -229,7 +284,7 @@ def play(args):
             obs, _, rews, dones, infos = env.step(actions.detach())
 
         if args.record_video:
-            _sync_reference_env_to_policy_motion(env, reference_env_id=0, policy_env_id=policy_env_id)
+            _set_reference_env_to_motion_clock(env, reference_clock, step_idx=i + 1, reference_env_id=0)
         policy_done = dones[policy_env_id:policy_env_id + 1]
 
         if policy_done.any():
