@@ -4,10 +4,28 @@ This file lists the currently usable L7 LAFAN training and evaluation commands.
 
 ## Training
 
+## Current Formal Experiment Setup
+
+These settings are the current approved L7 LAFAN setup for TWIST2 formal
+training. Do not change them without explicit user approval.
+
+```text
+robot: l7
+task: l7_stu_future
+dataset: lafan1_l7_filtered_pkl
+wandb project: twist2_l7_mimic
+formal num_envs / batch size: 4096
+pose termination: enabled, inherited from the G1 mimic config
+motion selection: use all for the full run, category aliases for single-class runs
+resource policy: reduce the number of concurrent single-category runs if memory is tight; do not reduce formal num_envs without approval
+```
+
 Run all 37 LAFAN motions in the main TWIST2 project:
 
 ```bash
 bash train.sh l7_lafan_all cuda:0 \
+  --proj_name twist2_l7_mimic \
+  --num_envs 4096 \
   --motion_file all
 ```
 
@@ -16,22 +34,25 @@ when comparing reward curves directly; otherwise each iteration contains a
 different amount of data.
 
 ```bash
-bash train.sh l7_lafan_dance cuda:0 --num_envs 4096 \
+bash train.sh l7_lafan_dance cuda:0 \
+  --proj_name twist2_l7_mimic \
+  --num_envs 4096 \
   --motion_file dance
 
-bash train.sh l7_lafan_walk cuda:0 --num_envs 4096 \
+bash train.sh l7_lafan_walk cuda:0 \
+  --proj_name twist2_l7_mimic \
+  --num_envs 4096 \
   --motion_file walk
 
-bash train.sh l7_lafan_run cuda:0 --num_envs 4096 \
+bash train.sh l7_lafan_run cuda:0 \
+  --proj_name twist2_l7_mimic \
+  --num_envs 4096 \
   --motion_file run
 ```
 
-Conservative concurrent single-category runs can use fewer envs:
-
-```bash
-bash train.sh l7_lafan_dance cuda:0 --num_envs 1024 \
-  --motion_file dance
-```
+For formal runs, keep `--num_envs 4096`. If GPU or cgroup memory is tight,
+start fewer single-category processes concurrently instead of lowering
+`--num_envs`.
 
 `train.sh` maps `--motion_file all`, `dance`, `walk`, `run`, etc. to the
 matching `legged_gym/motion_data_configs/l7_lafan1_<name>.yaml` file. You can
