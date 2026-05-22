@@ -34,6 +34,32 @@ Each file is a Python pickle containing a dictionary. For example,
 | `local_body_pos` | `(T, 51, 3)` float32 | Local positions for the 51 listed rigid/link bodies. |
 | `link_body_list` | length 51 list | Body names matching the `local_body_pos` body axis. |
 
+Important caveat for the current `lafan1_l7_filtered_pkl` files: the
+`local_body_pos` field is not currently usable as a key-body tracking target.
+For example, in
+`robotera_l7_dance1_subject1_normal.pkl`, `local_body_pos` has shape
+`(3945, 51, 3)`, but only the `pelvis` row has nonzero values. The L7 key-body
+rows used by training are all zero for every frame:
+
+```text
+left_wrist_roll_link      maxnorm = 0
+right_wrist_roll_link     maxnorm = 0
+left_ankle_roll_link      maxnorm = 0
+right_ankle_roll_link     maxnorm = 0
+left_knee_link            maxnorm = 0
+right_knee_link           maxnorm = 0
+left_shoulder_roll_link   maxnorm = 0
+right_shoulder_roll_link  maxnorm = 0
+torso_link                maxnorm = 0
+```
+
+The `root_pos`, `root_rot`, and `dof_pos` fields can still initialize the robot
+to a visually reasonable pose, because Isaac Gym state reset uses root state and
+DOF state directly. `local_body_pos` is different: it is used as a reference
+target for key-body tracking rewards, privileged motion observations, and pose
+termination. If it is zero, the code interprets hands, feet, knees, shoulders,
+and torso as being at the root.
+
 The raw PKL does not store velocities. It stores positions/orientations over
 time. `MotionLib` derives velocity-like tensors when each file is loaded:
 
@@ -76,6 +102,14 @@ The retargeted pickle is already in the format expected by
 files, `HumanoidMimic._load_motions()` creates the motion library, and the env
 samples reference root pose, joint pose, body positions, and velocities from that
 library.
+
+For L7 YAMLs in the main TWIST2 project, `root_rot_format: wxyz` is set
+explicitly. `MotionLib` converts those quaternions to Isaac Gym's expected
+`xyzw` order during load. Runtime diagnostics confirmed that the loaded
+`motion_lib._motion_root_rot`, `env._ref_root_rot`, and the initialized
+`env.root_states[:, 3:7]` all use the converted `xyzw` quaternion. The current
+one-step termination problem is therefore not caused by the old sideways-root
+quaternion issue.
 
 After `MotionLib` loads the YAML/PKL files, each motion is converted from a
 per-file dictionary into stacked tensors on the selected device:
@@ -122,6 +156,104 @@ root_rot_delta_local     (B, 3)
 
 where `B = num_envs * num_sampled_motion_steps`. The env reshapes those tensors
 back to `(num_envs, num_steps, ...)` before constructing observations.
+
+## Current Pose-Termination Failure Mode
+
+With pose termination enabled, `HumanoidMimic.check_termination()` compares the
+current simulated key-body positions against the reference key-body positions
+from `_ref_body_pos`:
+
+```text
+body_pos     = simulated key body position - simulated root position
+tar_body_pos = reference key body position - reference root position
+```
+
+When `global_obs=False`, both are rotated into their root-local frames before
+the distance is computed. The code then takes the maximum squared error over the
+9 key bodies and terminates if it exceeds `pose_termination_dist ** 2`.
+
+The current L7 key bodies are:
+
+```text
+left_wrist_roll_link
+right_wrist_roll_link
+left_ankle_roll_link
+right_ankle_roll_link
+left_knee_link
+right_knee_link
+left_shoulder_roll_link
+right_shoulder_roll_link
+torso_link
+```
+
+A 16-env runtime diagnostic on `l7_lafan1_dance.yaml` showed the reset source:
+
+```text
+contact      1 / 16
+height       0 / 16
+roll         0 / 16
+pitch        0 / 16
+motion_end   0 / 16
+vel          0 / 16
+pose        16 / 16
+```
+
+The root quaternions were already correct and matched between reference and sim,
+but `tar_body_pos` for every key body was effectively zero because
+`local_body_pos` in the PKL is zero. The real simulated feet and knees are not
+at the root, so the pose error immediately exceeds the `0.7 m` threshold:
+
+```text
+left_ankle_roll_link   mean error ~= 0.84 m
+right_ankle_roll_link  mean error ~= 0.85 m
+left_knee_link         mean error ~= 0.58 m
+right_knee_link        mean error ~= 0.58 m
+```
+
+`check_termination()` suppresses reset only on the initial `episode_length_buf ==
+0` step. On the next step, `pose_fail=True`, so the episode ends at length 1.
+This explains the observed `Mean episode length ~= 1`.
+
+Fixing the root cause requires producing valid `local_body_pos` / key-body FK
+targets for the L7 PKLs, or changing the TWIST2 training code so those targets
+are computed from `root + dof_pos + L7 kinematics` instead of trusting the empty
+PKL field. Disabling or relaxing pose termination only masks this failure; it
+does not repair key-body tracking rewards or privileged key-body observations.
+
+## Why TWIST1 Does Not Fail The Same Way
+
+`TWIST1` uses the same `lafan1_l7_filtered_pkl` files, so the empty
+`local_body_pos` data issue still exists there. It avoids the immediate
+one-step reset for two main reasons:
+
+1. `TWIST1/legged_gym/legged_gym/envs/l7/l7_mimic_distill_config.py` sets:
+
+```python
+pose_termination = False
+```
+
+So `check_termination()` does not use the bad key-body reference positions to
+end the episode. Contacts, height, roll/pitch, velocity, and motion end can
+still terminate, but the all-env pose failure is bypassed.
+
+2. `TWIST1` also removes live key-body positions from part of the proprioceptive
+privileged info path for L7:
+
+```python
+key_body_pos = torch.zeros((self.num_envs, len(self._key_body_ids) * 3), device=self.device)
+```
+
+This does not fix the PKL data, but it prevents one observation component from
+depending on simulated key-body positions. TWIST1 still includes reference
+key-body data in privileged mimic observations, and because the source PKL values
+are zero, those reference key-body features are not semantically valid. The key
+difference is that TWIST1 does not use them for pose termination, so training can
+continue instead of resetting every step.
+
+TWIST1 also has L7-specific body-count conversion helpers
+(`l7_body_from_34_to_30` / `l7_body_from_34_to_51`) for datasets with 34 body
+rows. They do not solve the current `lafan1_l7_filtered_pkl` issue in TWIST2:
+the current PKLs expose 51 body rows, but the relevant key-body rows are zero.
 
 ## Training Config Adaptation
 
