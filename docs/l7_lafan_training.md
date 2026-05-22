@@ -60,6 +60,91 @@ target for key-body tracking rewards, privileged motion observations, and pose
 termination. If it is zero, the code interprets hands, feet, knees, shoulders,
 and torso as being at the root.
 
+Aggregate norm statistics over all 37 `lafan1_l7_filtered_pkl` files:
+
+```text
+lafan1_l7_filtered_pkl
+├── files: 37
+├── fps
+│   ├── shape: scalar
+│   └── value: 30 for every file
+├── root_pos
+│   ├── shape: (T, 3), T varies across files
+│   ├── L2 norm per file: min 183.474, mean 361.425, max 590.355
+│   └── max absolute value over all files: 7.37915
+├── root_rot
+│   ├── shape: (T, 4), stored as wxyz in these L7 PKLs
+│   ├── L2 norm per file: min 55.3715, mean 83.3528, max 95.7706
+│   └── max absolute value over all files: 0.999994
+├── dof_pos
+│   ├── shape: (T, 29)
+│   ├── L2 norm per file: min 141.205, mean 312.759, max 518.546
+│   └── max absolute value over all files: 4.36
+├── link_body_list
+│   ├── shape: list[51]
+│   └── same 51 L7 link names in the sampled files
+└── local_body_pos
+    ├── shape: (T, 51, 3)
+    ├── L2 norm per file: min 183.474, mean 361.425, max 590.355
+    ├── max absolute value over all files: 7.37915
+    └── row-wise max norm over all 37 files
+        ├── 00 pelvis: nonzero_files 37/37, maxnorm_max 8.06828, maxnorm_mean 6.69079
+        ├── 01 base_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 02 left_hip_roll_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 03 left_hip_yaw_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 04 left_hip_pitch_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 05 left_knee_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 06 left_ankle_pitch_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 07 left_ankle_roll_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 08 left_foot_ee_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 09 right_hip_roll_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 10 right_hip_yaw_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 11 right_hip_pitch_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 12 right_knee_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 13 right_ankle_pitch_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 14 right_ankle_roll_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 15 right_foot_ee_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 16 waist_flange_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 17 waist_base_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 18 waist_yaw_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 19 waist_roll_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 20 torso_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 21 waist_pitch_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 22 torso_flange_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 23 torso_base_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 24 neck_flange_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 25 left_arm_flange_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 26 right_arm_flange_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 27 left_arm_base_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 28 left_shoulder_pitch_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 29 left_shoulder_roll_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 30 left_arm_yaw_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 31 left_elbow_pitch_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 32 left_elbow_yaw_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 33 left_wrist_pitch_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 34 left_wrist_roll_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 35 left_hand_flange_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 36 neck_base_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 37 neck_yaw_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 38 neck_pitch_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 39 lidar_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 40 mic_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 41 stereo_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 42 right_arm_base_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 43 right_shoulder_pitch_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 44 right_shoulder_roll_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 45 right_arm_yaw_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 46 right_elbow_pitch_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 47 right_elbow_yaw_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 48 right_wrist_pitch_link: nonzero_files 0/37, maxnorm_max 0
+        ├── 49 right_wrist_roll_link: nonzero_files 0/37, maxnorm_max 0
+        └── 50 right_hand_flange_link: nonzero_files 0/37, maxnorm_max 0
+```
+
+The matching `root_pos` and `local_body_pos` L2 norms are a red flag: the
+`local_body_pos` tensor is carrying the root trajectory in row 0 rather than
+per-link local FK positions.
+
 The raw PKL does not store velocities. It stores positions/orientations over
 time. `MotionLib` derives velocity-like tensors when each file is loaded:
 
