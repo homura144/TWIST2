@@ -1,114 +1,114 @@
 root_path: /cephfs/hesixiao/TWIST2/datasets
-root_rot_format: wxyz
+root_rot_format: xyzw
 motions:
 - description: lafan aiming1
-  file: lafan1_l7_filtered_pkl/robotera_l7_aiming1_subject1_normal.pkl
+  file: lafan_l7_pkl/aiming1_subject1.pkl
   weight: 1.0
 - description: lafan aiming1
-  file: lafan1_l7_filtered_pkl/robotera_l7_aiming1_subject4_normal.pkl
+  file: lafan_l7_pkl/aiming1_subject4.pkl
   weight: 1.0
 - description: lafan aiming2
-  file: lafan1_l7_filtered_pkl/robotera_l7_aiming2_subject2_normal.pkl
+  file: lafan_l7_pkl/aiming2_subject2.pkl
   weight: 1.0
 - description: lafan aiming2
-  file: lafan1_l7_filtered_pkl/robotera_l7_aiming2_subject3_normal.pkl
+  file: lafan_l7_pkl/aiming2_subject3.pkl
   weight: 1.0
 - description: lafan aiming2
-  file: lafan1_l7_filtered_pkl/robotera_l7_aiming2_subject5_normal.pkl
+  file: lafan_l7_pkl/aiming2_subject5.pkl
   weight: 1.0
 - description: lafan dance1
-  file: lafan1_l7_filtered_pkl/robotera_l7_dance1_subject1_normal.pkl
+  file: lafan_l7_pkl/dance1_subject1.pkl
   weight: 1.0
 - description: lafan dance1
-  file: lafan1_l7_filtered_pkl/robotera_l7_dance1_subject2_normal.pkl
+  file: lafan_l7_pkl/dance1_subject2.pkl
   weight: 1.0
 - description: lafan dance1
-  file: lafan1_l7_filtered_pkl/robotera_l7_dance1_subject3_normal.pkl
+  file: lafan_l7_pkl/dance1_subject3.pkl
   weight: 1.0
 - description: lafan dance2
-  file: lafan1_l7_filtered_pkl/robotera_l7_dance2_subject1_normal.pkl
+  file: lafan_l7_pkl/dance2_subject1.pkl
   weight: 1.0
 - description: lafan dance2
-  file: lafan1_l7_filtered_pkl/robotera_l7_dance2_subject2_normal.pkl
+  file: lafan_l7_pkl/dance2_subject2.pkl
   weight: 1.0
 - description: lafan dance2
-  file: lafan1_l7_filtered_pkl/robotera_l7_dance2_subject3_normal.pkl
+  file: lafan_l7_pkl/dance2_subject3.pkl
   weight: 1.0
 - description: lafan dance2
-  file: lafan1_l7_filtered_pkl/robotera_l7_dance2_subject5_normal.pkl
+  file: lafan_l7_pkl/dance2_subject5.pkl
   weight: 1.0
 - description: lafan fight1
-  file: lafan1_l7_filtered_pkl/robotera_l7_fight1_subject2_normal.pkl
+  file: lafan_l7_pkl/fight1_subject2.pkl
   weight: 1.0
 - description: lafan fight1
-  file: lafan1_l7_filtered_pkl/robotera_l7_fight1_subject3_normal.pkl
+  file: lafan_l7_pkl/fight1_subject3.pkl
   weight: 1.0
 - description: lafan fight1
-  file: lafan1_l7_filtered_pkl/robotera_l7_fight1_subject5_normal.pkl
+  file: lafan_l7_pkl/fight1_subject5.pkl
   weight: 1.0
 - description: lafan fightAndSports1
-  file: lafan1_l7_filtered_pkl/robotera_l7_fightAndSports1_subject1_normal.pkl
+  file: lafan_l7_pkl/fightAndSports1_subject1.pkl
   weight: 1.0
 - description: lafan fightAndSports1
-  file: lafan1_l7_filtered_pkl/robotera_l7_fightAndSports1_subject4_normal.pkl
+  file: lafan_l7_pkl/fightAndSports1_subject4.pkl
   weight: 1.0
 - description: lafan jumps1
-  file: lafan1_l7_filtered_pkl/robotera_l7_jumps1_subject1_normal.pkl
+  file: lafan_l7_pkl/jumps1_subject1.pkl
   weight: 1.0
 - description: lafan jumps1
-  file: lafan1_l7_filtered_pkl/robotera_l7_jumps1_subject2_normal.pkl
+  file: lafan_l7_pkl/jumps1_subject2.pkl
   weight: 1.0
 - description: lafan jumps1
-  file: lafan1_l7_filtered_pkl/robotera_l7_jumps1_subject5_normal.pkl
+  file: lafan_l7_pkl/jumps1_subject5.pkl
   weight: 1.0
 - description: lafan push1
-  file: lafan1_l7_filtered_pkl/robotera_l7_push1_subject2_normal.pkl
+  file: lafan_l7_pkl/push1_subject2.pkl
   weight: 1.0
 - description: lafan run1
-  file: lafan1_l7_filtered_pkl/robotera_l7_run1_subject2_normal.pkl
+  file: lafan_l7_pkl/run1_subject2.pkl
   weight: 1.0
 - description: lafan run1
-  file: lafan1_l7_filtered_pkl/robotera_l7_run1_subject5_normal.pkl
+  file: lafan_l7_pkl/run1_subject5.pkl
   weight: 1.0
 - description: lafan run2
-  file: lafan1_l7_filtered_pkl/robotera_l7_run2_subject1_normal.pkl
+  file: lafan_l7_pkl/run2_subject1.pkl
   weight: 1.0
 - description: lafan run2
-  file: lafan1_l7_filtered_pkl/robotera_l7_run2_subject4_normal.pkl
+  file: lafan_l7_pkl/run2_subject4.pkl
   weight: 1.0
 - description: lafan sprint1
-  file: lafan1_l7_filtered_pkl/robotera_l7_sprint1_subject2_normal.pkl
+  file: lafan_l7_pkl/sprint1_subject2.pkl
   weight: 1.0
 - description: lafan sprint1
-  file: lafan1_l7_filtered_pkl/robotera_l7_sprint1_subject4_normal.pkl
+  file: lafan_l7_pkl/sprint1_subject4.pkl
   weight: 1.0
 - description: lafan walk1
-  file: lafan1_l7_filtered_pkl/robotera_l7_walk1_subject1_normal.pkl
+  file: lafan_l7_pkl/walk1_subject1.pkl
   weight: 1.0
 - description: lafan walk1
-  file: lafan1_l7_filtered_pkl/robotera_l7_walk1_subject2_normal.pkl
+  file: lafan_l7_pkl/walk1_subject2.pkl
   weight: 1.0
 - description: lafan walk1
-  file: lafan1_l7_filtered_pkl/robotera_l7_walk1_subject5_normal.pkl
+  file: lafan_l7_pkl/walk1_subject5.pkl
   weight: 1.0
 - description: lafan walk2
-  file: lafan1_l7_filtered_pkl/robotera_l7_walk2_subject1_normal.pkl
+  file: lafan_l7_pkl/walk2_subject1.pkl
   weight: 1.0
 - description: lafan walk2
-  file: lafan1_l7_filtered_pkl/robotera_l7_walk2_subject3_normal.pkl
+  file: lafan_l7_pkl/walk2_subject3.pkl
   weight: 1.0
 - description: lafan walk2
-  file: lafan1_l7_filtered_pkl/robotera_l7_walk2_subject4_normal.pkl
+  file: lafan_l7_pkl/walk2_subject4.pkl
   weight: 1.0
 - description: lafan walk3
-  file: lafan1_l7_filtered_pkl/robotera_l7_walk3_subject2_normal.pkl
+  file: lafan_l7_pkl/walk3_subject2.pkl
   weight: 1.0
 - description: lafan walk3
-  file: lafan1_l7_filtered_pkl/robotera_l7_walk3_subject3_normal.pkl
+  file: lafan_l7_pkl/walk3_subject3.pkl
   weight: 1.0
 - description: lafan walk3
-  file: lafan1_l7_filtered_pkl/robotera_l7_walk3_subject5_normal.pkl
+  file: lafan_l7_pkl/walk3_subject5.pkl
   weight: 1.0
 - description: lafan walk4
-  file: lafan1_l7_filtered_pkl/robotera_l7_walk4_subject1_normal.pkl
+  file: lafan_l7_pkl/walk4_subject1.pkl
   weight: 1.0

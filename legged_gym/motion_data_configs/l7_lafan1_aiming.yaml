@@ -1,18 +1,18 @@
 root_path: /cephfs/hesixiao/TWIST2/datasets
-root_rot_format: wxyz
+root_rot_format: xyzw
 motions:
 - description: lafan aiming1
-  file: lafan1_l7_filtered_pkl/robotera_l7_aiming1_subject1_normal.pkl
+  file: lafan_l7_pkl/aiming1_subject1.pkl
   weight: 1.0
 - description: lafan aiming1
-  file: lafan1_l7_filtered_pkl/robotera_l7_aiming1_subject4_normal.pkl
+  file: lafan_l7_pkl/aiming1_subject4.pkl
   weight: 1.0
 - description: lafan aiming2
-  file: lafan1_l7_filtered_pkl/robotera_l7_aiming2_subject2_normal.pkl
+  file: lafan_l7_pkl/aiming2_subject2.pkl
   weight: 1.0
 - description: lafan aiming2
-  file: lafan1_l7_filtered_pkl/robotera_l7_aiming2_subject3_normal.pkl
+  file: lafan_l7_pkl/aiming2_subject3.pkl
   weight: 1.0
 - description: lafan aiming2
-  file: lafan1_l7_filtered_pkl/robotera_l7_aiming2_subject5_normal.pkl
+  file: lafan_l7_pkl/aiming2_subject5.pkl
   weight: 1.0

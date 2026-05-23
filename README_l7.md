@@ -12,7 +12,7 @@ training. Do not change them without explicit user approval.
 ```text
 robot: l7
 task: l7_stu_future
-dataset: lafan1_l7_filtered_pkl
+dataset: lafan_l7_pkl
 wandb project: twist2_l7_mimic
 formal num_envs / batch size: 4096
 pose termination: enabled, inherited from the G1 mimic config
@@ -169,14 +169,14 @@ random reference-state initialization.
 
 ## L7 Motion Quaternion Format
 
-The L7 retargeted PKL files store `root_rot` as `(w, x, y, z)`, while Isaac Gym
-root states and the project quaternion utilities expect `(x, y, z, w)`.
-All L7 motion YAMLs therefore include:
+The active `lafan_l7_pkl` files store `root_rot` as `(x, y, z, w)`, matching
+Isaac Gym root states and the project quaternion utilities. All L7 motion YAMLs
+therefore include:
 
 ```yaml
-root_rot_format: wxyz
+root_rot_format: xyzw
 ```
 
-`pose.utils.motion_lib_pkl.MotionLib` converts those root quaternions to
-`xyzw` on load. Without this conversion, the first component is interpreted as
-the x component instead of w, which makes the robot appear sideways or flipped.
+`pose.utils.motion_lib_pkl.MotionLib` leaves these root quaternions unchanged on
+load. Quaternion reordering belongs in the dataset conversion step, not in the
+runtime loader for this dataset.
